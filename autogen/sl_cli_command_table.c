@@ -274,6 +274,8 @@ void enable(sl_cli_command_arg_t *arguments);
 void setRxOn(sl_cli_command_arg_t *arguments);
 void cancelRxOn(sl_cli_command_arg_t *arguments);
 void rxOnStatus(sl_cli_command_arg_t *arguments);
+void switch_periodic_command(sl_cli_command_arg_t *arguments);
+
 
 // Command structs. Names are in the format : cli_cmd_{command group name}_{command name}
 // In order to support hyphen in command and group name, every occurence of it while
@@ -379,6 +381,12 @@ static const sl_cli_command_info_t cli_cmd__version = \
                  "Shows the version of the software.",
                   "",
                  {SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_switch_hyphen_periodic = \
+  SL_CLI_COMMAND(switch_periodic_command,
+                 "Periodically sends an On/Off Toggle command to a specific node and endpoint.",
+                  "Node ID" SL_CLI_UNIT_SEPARATOR "Endpoint" SL_CLI_UNIT_SEPARATOR "Interval in milliseconds (0 to stop)" SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT16, SL_CLI_ARG_UINT8, SL_CLI_ARG_UINT32, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_endpoints_print = \
   SL_CLI_COMMAND(endpointPrint,
@@ -1575,6 +1583,7 @@ const sl_cli_command_entry_t sl_cli_default_command_table[] = {
   { "get-pti-radio-config", &cli_cmd__get_hyphen_pti_hyphen_radio_hyphen_config, false },
   { "config-cca-mode", &cli_cmd__config_hyphen_cca_hyphen_mode, false },
   { "version", &cli_cmd__version, false },
+  { "switch-periodic", &cli_cmd_switch_hyphen_periodic, false },
   { "events", &cli_cmd__events, false },
   { "energy-scan", &cli_cmd__energy_hyphen_scan, false },
   { "endpoints", &cli_cmd_grp_endpoints, false },

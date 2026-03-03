@@ -22,6 +22,7 @@
 #include "network-steering.h"
 #include "zll-commissioning.h"
 #include "find-and-bind-initiator.h"
+#include "sl_cli.h"
 #if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
 #include "zigbee_sleep_config.h"
 #endif
@@ -56,6 +57,57 @@ static uint8_t lastButton;
 static sl_zigbee_af_event_t commissioning_event;
 static sl_zigbee_af_event_t led_event;
 static sl_zigbee_af_event_t finding_and_binding_event;
+
+
+static sl_802154_short_addr_t periodic_target_node_id;
+static uint8_t periodic_target_endpoint;
+static uint32_t periodic_interval_ms;
+static sl_zigbee_af_event_t switch_periodic_event;
+
+static void switch_periodic_event_handler(sl_zigbee_af_event_t *event)
+{
+  sl_status_t status;
+
+  if (sl_zigbee_af_network_state() != SL_ZIGBEE_JOINED_NETWORK) {
+    sl_zigbee_app_debug_println("switch_periodic stopped: not joined to a network");
+    sl_zigbee_af_event_set_inactive(event);
+    return;
+  }
+
+  sl_zigbee_af_set_command_endpoints(SWITCH_ENDPOINT, periodic_target_endpoint);
+  sl_zigbee_af_fill_command_on_off_cluster_toggle();
+
+  status = sl_zigbee_af_send_command_unicast(SL_ZIGBEE_OUTGOING_DIRECT,
+                                             periodic_target_node_id);
+  sl_zigbee_app_debug_println("switch_periodic toggle to 0x%04X ep %d: 0x%02X",
+                              periodic_target_node_id,
+                              periodic_target_endpoint,
+                              status);
+
+  sl_zigbee_af_event_set_delay_ms(event, periodic_interval_ms);
+}
+
+void switch_periodic_command(sl_cli_command_arg_t *arguments)
+{
+  periodic_target_node_id = sl_cli_get_argument_uint16(arguments, 0);
+  periodic_target_endpoint = sl_cli_get_argument_uint8(arguments, 1);
+  periodic_interval_ms = sl_cli_get_argument_uint32(arguments, 2);
+
+  if (periodic_interval_ms == 0U) {
+    sl_zigbee_af_event_set_inactive(&switch_periodic_event);
+    sl_zigbee_app_debug_println("switch_periodic stopped");
+    return;
+  }
+
+  sl_zigbee_af_event_set_active(&switch_periodic_event);
+  sl_zigbee_app_debug_println("switch_periodic started: node 0x%04X ep %d interval %lu ms",
+                              periodic_target_node_id,
+                              periodic_target_endpoint,
+                              (unsigned long)periodic_interval_ms);
+}
+
+//---------------
+// Event handlers
 
 //---------------
 // Event handlers
@@ -122,6 +174,7 @@ void sl_zigbee_af_main_init_cb(void)
   sl_zigbee_af_isr_event_init(&commissioning_event, commissioning_event_handler);
   sl_zigbee_af_event_init(&led_event, led_event_handler);
   sl_zigbee_af_event_init(&finding_and_binding_event, finding_and_binding_event_handler);
+  sl_zigbee_af_event_init(&switch_periodic_event, switch_periodic_event_handler);
 }
 
 /** @brief Stack Status
@@ -135,6 +188,7 @@ void sl_zigbee_af_stack_status_cb(sl_status_t status)
 {
   if (status == SL_STATUS_NETWORK_DOWN) {
     led_turn_off(COMMISSIONING_STATUS_LED);
+    sl_zigbee_af_event_set_inactive(&switch_periodic_event);
   } else if (status == SL_STATUS_NETWORK_UP) {
     led_turn_on(COMMISSIONING_STATUS_LED);
   }
