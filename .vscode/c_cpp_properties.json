@@ -4,11 +4,10 @@
         {
             "name": "default_config",
             "includePath": [
+                "${workspaceFolder}/autogen",
                 "${workspaceFolder}/config",
                 "${workspaceFolder}/config/prioconf",
                 "${workspaceFolder}/config/zcl",
-                "${workspaceFolder}/autogen",
-                "${workspaceFolder}/.",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/devices/platform/Device/SiliconLabs/EFR32MG26/Include",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/platform_common/platform/common/inc",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/boards/hardware/board/inc",
@@ -94,7 +93,6 @@
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/app/framework/plugin/debug-print",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/stack/include",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/stack/internal/inc",
-                "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/app/framework/plugin/end-device-support",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/app/framework/plugin/find-and-bind-initiator",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/app/framework/plugin/identify",
                 "${workspaceFolder}/simplicity_sdk_2025.12.0/zigbee/app/framework/plugin/interpan",
@@ -178,7 +176,6 @@
                 "SL_RAIL_UTIL_PA_TABLES_CONFIG_HEADER=<sl_rail_util_pa_tables_config.h>",
                 "SL_CODE_COMPONENT_SLEEPTIMER=sleeptimer",
                 "SL_CODE_COMPONENT_PSEC_OSAL=psec_osal",
-                "SL_ZIGBEE_LEAF_STACK=1",
                 "SL_CODE_COMPONENT_BUFFER_MANAGER=buffer_manager",
                 "SL_CODE_COMPONENT_IEEE_802_15_4_MAC=ieee_802_15_4_mac",
                 "SL_CODE_COMPONENT_ZIGBEE_STACK=zigbee_stack",

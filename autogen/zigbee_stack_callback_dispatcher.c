@@ -231,8 +231,6 @@ sli_zigbee_af_stack_status_callback(status);
 
 sl_zigbee_af_bdb_3dot1_rejoin_algorithm_stack_status_cb(status);
 
-sl_zigbee_af_end_device_support_stack_status_cb(status);
-
 sli_zigbee_af_network_steering_stack_status_callback(status);
 
 sl_zigbee_af_trust_center_keepalive_stack_status_cb(status);
@@ -429,8 +427,6 @@ void sli_zigbee_af_poll_complete(
 {
 
 
-
-sli_zigbee_af_end_device_support_poll_complete_callback(status);
 (void)status;
 }
 

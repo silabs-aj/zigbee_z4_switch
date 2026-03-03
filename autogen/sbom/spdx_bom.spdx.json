@@ -5,7 +5,7 @@
   "name" : "Silicon-Laboratories",
   "documentNamespace" : "https://silabs.com",
   "creationInfo" : {
-    "created" : "2026-03-03T02:27:25Z",
+    "created" : "2026-03-03T03:55:53Z",
     "creators" : [ "Tool: Silicon Labs Configuration Tooling" ]
   },
   "comment" : "TERMS OF USE - SILICON LABORATORIES INC.\n(With respect to Silicon Labs software components, this Software Bill of Materials (SBOM) is based upon Silicon Labs'\nreview and analysis of the code version when released.  It is provided \"AS IS\" and does not modify, change or alter\nthe terms or conditions of your use of Silicon Labs' software and/or SDKs based upon license terms and/or agreements\nassociated with this software or SDKs when distributed to you, received by you, or installed by you.  Further, no\nwarranties or obligations are created by this SBOM.  It is your obligation to comply with the terms of licenses\nreferenced in this SBOM.)",
@@ -162,14 +162,6 @@
     "supplier" : "Organization: Silicon Laboratories, Inc.",
     "licenseConcluded" : "MSLA"
   }, {
-    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_end_device_support",
-    "name" : "End Device Support",
-    "versionInfo" : "2025.12.0",
-    "primaryPackagePurpose" : "LIBRARY",
-    "downloadLocation" : "NOASSERTION",
-    "supplier" : "Organization: Silicon Laboratories, Inc.",
-    "licenseConcluded" : "MSLA"
-  }, {
     "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_find_and_bind_initiator",
     "name" : "Find and Bind Initiator",
     "versionInfo" : "2025.12.0",
@@ -204,14 +196,6 @@
   }, {
     "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_network_steering",
     "name" : "Network Steering",
-    "versionInfo" : "2025.12.0",
-    "primaryPackagePurpose" : "LIBRARY",
-    "downloadLocation" : "NOASSERTION",
-    "supplier" : "Organization: Silicon Laboratories, Inc.",
-    "licenseConcluded" : "MSLA"
-  }, {
-    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack",
-    "name" : "Pro Leaf Stack",
     "versionInfo" : "2025.12.0",
     "primaryPackagePurpose" : "LIBRARY",
     "downloadLocation" : "NOASSERTION",
@@ -1577,14 +1561,6 @@
     "supplier" : "Organization: Silicon Laboratories, Inc.",
     "licenseConcluded" : "MSLA"
   }, {
-    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack_library",
-    "name" : "Zigbee PRO Leaf (Library)",
-    "versionInfo" : "2025.12.0",
-    "primaryPackagePurpose" : "LIBRARY",
-    "downloadLocation" : "NOASSERTION",
-    "supplier" : "Organization: Silicon Laboratories, Inc.",
-    "licenseConcluded" : "MSLA"
-  }, {
     "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-radio_priority_configurator",
     "name" : "Radio Priority Configurator",
     "versionInfo" : "2025.12.0",
@@ -1640,6 +1616,30 @@
     "downloadLocation" : "NOASSERTION",
     "supplier" : "Organization: Silicon Laboratories, Inc.",
     "licenseConcluded" : "Zlib"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack",
+    "name" : "Pro Stack (Common)",
+    "versionInfo" : "2025.12.0",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "MSLA"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_library",
+    "name" : "Zigbee PRO Stack (Library)",
+    "versionInfo" : "2025.12.0",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "MSLA"
+  }, {
+    "SPDXID" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_basic",
+    "name" : "Pro Stack (Basic)",
+    "versionInfo" : "2025.12.0",
+    "primaryPackagePurpose" : "LIBRARY",
+    "downloadLocation" : "NOASSERTION",
+    "supplier" : "Organization: Silicon Laboratories, Inc.",
+    "licenseConcluded" : "MSLA"
   } ],
   "relationships" : [ {
     "spdxElementId" : "SPDXRef-DOCUMENT",
@@ -1719,10 +1719,6 @@
     "relationshipType" : "CONTAINS"
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
-    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_end_device_support",
-    "relationshipType" : "CONTAINS"
-  }, {
-    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
     "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_find_and_bind_initiator",
     "relationshipType" : "CONTAINS"
   }, {
@@ -1740,10 +1736,6 @@
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
     "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_network_steering",
-    "relationshipType" : "CONTAINS"
-  }, {
-    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
-    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack",
     "relationshipType" : "CONTAINS"
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
@@ -2423,10 +2415,6 @@
     "relationshipType" : "CONTAINS"
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
-    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack_library",
-    "relationshipType" : "CONTAINS"
-  }, {
-    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
     "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-radio_priority_configurator",
     "relationshipType" : "CONTAINS"
   }, {
@@ -2452,6 +2440,18 @@
   }, {
     "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
     "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-gpio",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_library",
+    "relationshipType" : "CONTAINS"
+  }, {
+    "spdxElementId" : "SPDXRef-silabs.simplicity_sdk-2025.12.0",
+    "relatedSpdxElement" : "SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_basic",
     "relationshipType" : "CONTAINS"
   } ]
 }

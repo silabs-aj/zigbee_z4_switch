@@ -10,7 +10,7 @@ referenced in this SBOM.)
 -->
 <bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
   <metadata>
-    <timestamp>2026-03-03T02:27:25Z</timestamp>
+    <timestamp>2026-03-03T03:55:53Z</timestamp>
     <authors>
       <author>
         <name>Silicon Laboratories, Inc.</name>
@@ -205,16 +205,6 @@ referenced in this SBOM.)
             <expression>MSLA</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_end_device_support" type="library">
-          <name>End Device Support</name>
-          <version>2025.12.0</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_find_and_bind_initiator" type="library">
           <name>Find and Bind Initiator</name>
           <version>2025.12.0</version>
@@ -257,16 +247,6 @@ referenced in this SBOM.)
         </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_network_steering" type="library">
           <name>Network Steering</name>
-          <version>2025.12.0</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-        </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_pro_leaf_stack" type="library">
-          <name>Pro Leaf Stack</name>
           <version>2025.12.0</version>
 	      <supplier>
 	        <name>Silicon Laboratories, Inc.</name>
@@ -1975,16 +1955,6 @@ referenced in this SBOM.)
             <expression>MSLA</expression>
           </licenses>
         </component>
-        <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_pro_leaf_stack_library" type="library">
-          <name>Zigbee PRO Leaf (Library)</name>
-          <version>2025.12.0</version>
-	      <supplier>
-	        <name>Silicon Laboratories, Inc.</name>
-	      </supplier>
-          <licenses>
-            <expression>MSLA</expression>
-          </licenses>
-        </component>
         <component bom-ref="silabs.simplicity_sdk:2025.12.0:radio_priority_configurator" type="library">
           <name>Radio Priority Configurator</name>
           <version>2025.12.0</version>
@@ -2053,6 +2023,36 @@ referenced in this SBOM.)
 	      </supplier>
           <licenses>
             <expression>Zlib</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_pro_stack" type="library">
+          <name>Pro Stack (Common)</name>
+          <version>2025.12.0</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_pro_stack_library" type="library">
+          <name>Zigbee PRO Stack (Library)</name>
+          <version>2025.12.0</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
+          </licenses>
+        </component>
+        <component bom-ref="silabs.simplicity_sdk:2025.12.0:zigbee_pro_stack_basic" type="library">
+          <name>Pro Stack (Basic)</name>
+          <version>2025.12.0</version>
+	      <supplier>
+	        <name>Silicon Laboratories, Inc.</name>
+	      </supplier>
+          <licenses>
+            <expression>MSLA</expression>
           </licenses>
         </component>
       </components>

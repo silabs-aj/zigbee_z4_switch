@@ -45,6 +45,7 @@ sl_token_manager_config.h=1345823312
 sl_zigbee_debug_print_config.h=50688747
 sl_zigbee_light_link_config.h=1094224856
 sl_zigbee_pro_leaf_stack_config.h=-2045634705
+sl_zigbee_pro_stack_config.h=-713997055
 sl_zigbee_security_link_keys_config.h=1556788737
 trust-center-keepalive-config.h=-32488275
 update-tc-link-key-config.h=1275433778

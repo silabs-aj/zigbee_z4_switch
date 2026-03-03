@@ -13,7 +13,7 @@ DocumentNamespace: https://silabs.com
 
 ## Creation Information
 Creator: Organization: Silicon Laboratories, Inc.
-Created: 2026-03-03T02:27:25Z
+Created: 2026-03-03T03:55:53Z
 ## Relationships
 Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-silabs.simplicity_sdk-2025.12.0
 
@@ -43,13 +43,11 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_debug_basic
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_debug_print
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_dynamic_commissioning
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_end_device_support
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_find_and_bind_initiator
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_groups_client
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_identify
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_interpan
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_network_steering
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_scan_dispatch
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_scenes_client
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_security_link_keys
@@ -218,7 +216,6 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-sleeptimer
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-psa_crypto_common
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_signature_decode
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack_library
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-radio_priority_configurator
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-sl_common
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-mbedtls_config
@@ -226,6 +223,9 @@ Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.si
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-sl_main_process_action
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-endianness
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-gpio
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_library
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0 CONTAINS SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_basic
 
 ## Package Information
 PackageName: EFR32MG26B510F3200IL136
@@ -426,17 +426,6 @@ PackageLicenseConcluded: MSLA
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_dynamic_commissioning CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
 
 ## Package Information
-PackageName: End Device Support
-SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_end_device_support
-PackageVersion: 2025.12.0
-PrimaryPackagePurpose: LIBRARY
-PackageDownloadLocation: NOASSERTION
-PackageSupplier: Organization: Silicon Laboratories, Inc.
-PackageLicenseConcluded: MSLA
-## Relationships
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_end_device_support CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
-
-## Package Information
 PackageName: Find and Bind Initiator
 SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_find_and_bind_initiator
 PackageVersion: 2025.12.0
@@ -490,17 +479,6 @@ PackageSupplier: Organization: Silicon Laboratories, Inc.
 PackageLicenseConcluded: MSLA
 ## Relationships
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_network_steering CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
-
-## Package Information
-PackageName: Pro Leaf Stack
-SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack
-PackageVersion: 2025.12.0
-PrimaryPackagePurpose: LIBRARY
-PackageDownloadLocation: NOASSERTION
-PackageSupplier: Organization: Silicon Laboratories, Inc.
-PackageLicenseConcluded: MSLA
-## Relationships
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
 
 ## Package Information
 PackageName: Scan Dispatch
@@ -2366,17 +2344,6 @@ PackageLicenseConcluded: MSLA
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_signature_decode CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
 
 ## Package Information
-PackageName: Zigbee PRO Leaf (Library)
-SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack_library
-PackageVersion: 2025.12.0
-PrimaryPackagePurpose: LIBRARY
-PackageDownloadLocation: NOASSERTION
-PackageSupplier: Organization: Silicon Laboratories, Inc.
-PackageLicenseConcluded: MSLA
-## Relationships
-Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_leaf_stack_library CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
-
-## Package Information
 PackageName: Radio Priority Configurator
 SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-radio_priority_configurator
 PackageVersion: 2025.12.0
@@ -2452,3 +2419,36 @@ PackageSupplier: Organization: Silicon Laboratories, Inc.
 PackageLicenseConcluded: Zlib
 ## Relationships
 Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-gpio CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
+
+## Package Information
+PackageName: Pro Stack (Common)
+SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack
+PackageVersion: 2025.12.0
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: MSLA
+## Relationships
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
+
+## Package Information
+PackageName: Zigbee PRO Stack (Library)
+SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_library
+PackageVersion: 2025.12.0
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: MSLA
+## Relationships
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_library CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0
+
+## Package Information
+PackageName: Pro Stack (Basic)
+SPDXID: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_basic
+PackageVersion: 2025.12.0
+PrimaryPackagePurpose: LIBRARY
+PackageDownloadLocation: NOASSERTION
+PackageSupplier: Organization: Silicon Laboratories, Inc.
+PackageLicenseConcluded: MSLA
+## Relationships
+Relationship: SPDXRef-silabs.simplicity_sdk-2025.12.0-zigbee_pro_stack_basic CONTAINED_BY SPDXRef-silabs.simplicity_sdk-2025.12.0

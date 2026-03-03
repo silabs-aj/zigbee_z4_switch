@@ -158,9 +158,6 @@ void sli_zigbee_debug_print_enable_core_type_command(sl_cli_command_arg_t *argum
 void sli_zigbee_debug_print_enable_app_type_command(sl_cli_command_arg_t *arguments);
 void sli_zigbee_debug_print_enable_zcl_type_command(sl_cli_command_arg_t *arguments);
 void sli_zigbee_debug_print_enable_legacy_af_debug_type_command(sl_cli_command_arg_t *arguments);
-void sl_zigbee_af_end_device_support_status_command(sl_cli_command_arg_t *arguments);
-void sl_zigbee_af_end_device_support_poll_completed_callback_command(sl_cli_command_arg_t *arguments);
-void sl_zigbee_af_end_device_support_force_short_poll_command(sl_cli_command_arg_t *arguments);
 void sl_zigbee_af_find_and_bind_initiator_start_command(sl_cli_command_arg_t *arguments);
 void sli_zigbee_af_identify_cli_print(sl_cli_command_arg_t *arguments);
 void sli_zigbee_af_interpan_enable_command(sl_cli_command_arg_t *arguments);
@@ -190,10 +187,13 @@ void sl_zigbee_af_set_tc_link_key_update_max_attempts_per_iteration_command(sl_c
 void sl_zigbee_af_set_tc_link_key_update_max_iterations_command(sl_cli_command_arg_t *arguments);
 void networkFormCommand(sl_cli_command_arg_t *arguments);
 void networkJoinCommand(sl_cli_command_arg_t *arguments);
+void networkPermitJoinCommand(sl_cli_command_arg_t *arguments);
 void networkLeaveCommand(sl_cli_command_arg_t *arguments);
 void networkRejoinCommand(sl_cli_command_arg_t *arguments);
 void networkRejoinDiffDeviceTypeCommand(sl_cli_command_arg_t *arguments);
 void networkExtendedPanIdCommand(sl_cli_command_arg_t *arguments);
+void networkCheckPjoinCommand(sl_cli_command_arg_t *arguments);
+void networkPermitJoinCommand(sl_cli_command_arg_t *arguments);
 void findJoinableNetworkCommand(sl_cli_command_arg_t *arguments);
 void findUnusedPanIdCommand(sl_cli_command_arg_t *arguments);
 void networkChangeChannelCommand(sl_cli_command_arg_t *arguments);
@@ -220,6 +220,9 @@ void optionApsRetryCommand(sl_cli_command_arg_t *arguments);
 void optionApsRetryCommand(sl_cli_command_arg_t *arguments);
 void optionApsSecurityCommand(sl_cli_command_arg_t *arguments);
 void optionApsSecurityCommand(sl_cli_command_arg_t *arguments);
+void optionSecurityAllowTrustCenterRejoinUsingWellKnownKey(sl_cli_command_arg_t *arguments);
+void optionSecurityAllowTrustCenterRejoinUsingWellKnownKeyTimeout(sl_cli_command_arg_t *arguments);
+void optionSecuritySetKeyRequestPolicy(sl_cli_command_arg_t *arguments);
 void changeKeyCommand(sl_cli_command_arg_t *arguments);
 void changeKeyCommand(sl_cli_command_arg_t *arguments);
 void optionLinkCommand(sl_cli_command_arg_t *arguments);
@@ -275,7 +278,6 @@ void setRxOn(sl_cli_command_arg_t *arguments);
 void cancelRxOn(sl_cli_command_arg_t *arguments);
 void rxOnStatus(sl_cli_command_arg_t *arguments);
 void switch_periodic_command(sl_cli_command_arg_t *arguments);
-
 
 // Command structs. Names are in the format : cli_cmd_{command group name}_{command name}
 // In order to support hyphen in command and group name, every occurence of it while
@@ -502,24 +504,6 @@ static const sl_cli_command_info_t cli_cmd_enable_type_legacy_af_debug = \
                   "Enable/disable" SL_CLI_UNIT_SEPARATOR,
                  {SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
-static const sl_cli_command_info_t cli_cmd_end_hyphen_device_hyphen_support_status = \
-  SL_CLI_COMMAND(sl_zigbee_af_end_device_support_status_command,
-                 "Displays the status of the End Devices polling.",
-                  "",
-                 {SL_CLI_ARG_END, });
-
-static const sl_cli_command_info_t cli_cmd_end_hyphen_device_hyphen_support_poll_hyphen_completed_hyphen_callback = \
-  SL_CLI_COMMAND(sl_zigbee_af_end_device_support_poll_completed_callback_command,
-                 "Sets whether the devices poll completed callback function is enabled.",
-                  "The value indicating whether the devices poll completed callback function is enabled" SL_CLI_UNIT_SEPARATOR,
-                 {SL_CLI_ARG_INT8, SL_CLI_ARG_END, });
-
-static const sl_cli_command_info_t cli_cmd_end_hyphen_device_hyphen_support_force_hyphen_short_hyphen_poll = \
-  SL_CLI_COMMAND(sl_zigbee_af_end_device_support_force_short_poll_command,
-                 "Sets whether the CLI forces the device to short poll.",
-                  "The value indicating whether the device should short poll" SL_CLI_UNIT_SEPARATOR,
-                 {SL_CLI_ARG_INT8, SL_CLI_ARG_END, });
-
 static const sl_cli_command_info_t cli_cmd_find_hyphen_and_hyphen_bind_initiator = \
   SL_CLI_COMMAND(sl_zigbee_af_find_and_bind_initiator_start_command,
                  "Makes this node start the initiator part of the finding and binding process.",
@@ -694,6 +678,12 @@ static const sl_cli_command_info_t cli_cmd_network_join = \
                   "The channel on which to join the network" SL_CLI_UNIT_SEPARATOR "One-byte signed value indicating the TX Power that the radio should be set to" SL_CLI_UNIT_SEPARATOR "The PAN ID on which to join the network" SL_CLI_UNIT_SEPARATOR,
                  {SL_CLI_ARG_UINT8, SL_CLI_ARG_INT8, SL_CLI_ARG_UINT16, SL_CLI_ARG_END, });
 
+static const sl_cli_command_info_t cli_cmd_network_pjoin = \
+  SL_CLI_COMMAND(networkPermitJoinCommand,
+                 "Turns permit joining on for the amount of time indicated.",
+                  "A single byte indicating how long the device should have permit joining turn on for. A value of 0xff turns permit join indefinitely." SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
+
 static const sl_cli_command_info_t cli_cmd_network_leave = \
   SL_CLI_COMMAND(networkLeaveCommand,
                  "Leaves a network.",
@@ -717,6 +707,18 @@ static const sl_cli_command_info_t cli_cmd_network_extpanid = \
                  "Writes the extended pan ID for the device.",
                   "extpanid" SL_CLI_UNIT_SEPARATOR,
                  {SL_CLI_ARG_HEX, SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_network_isopen = \
+  SL_CLI_COMMAND(networkCheckPjoinCommand,
+                 "Checks network pjoin status.",
+                  "",
+                 {SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_network_broad_hyphen_pjoin = \
+  SL_CLI_COMMAND(networkPermitJoinCommand,
+                 "Permits joining on the network for a given number of seconds AND broadcasts a ZDO Mgmt Permit Joining request to all routers.",
+                  "A single byte indicating how long the device should have permit joining turned on for. A value of 0xff turns on permit join indefinitely." SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_find_joinable = \
   SL_CLI_COMMAND(findJoinableNetworkCommand,
@@ -873,6 +875,24 @@ static const sl_cli_command_info_t cli_cmd_aps_off = \
                  "",
                   "",
                  {SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_security_set_hyphen_allow_hyphen_trust_hyphen_center_hyphen_rejoin_hyphen_using_hyphen_well_hyphen_known_hyphen_key = \
+  SL_CLI_COMMAND(optionSecurityAllowTrustCenterRejoinUsingWellKnownKey,
+                 "",
+                  "Bool: allow trust center rejoin using well-known key" SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_security_set_hyphen_allow_hyphen_trust_hyphen_center_hyphen_rejoin_hyphen_using_hyphen_well_hyphen_known_hyphen_key_hyphen_timeout = \
+  SL_CLI_COMMAND(optionSecurityAllowTrustCenterRejoinUsingWellKnownKeyTimeout,
+                 "",
+                  "timeout" SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT16, SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_security_set_hyphen_key_hyphen_request_hyphen_policy = \
+  SL_CLI_COMMAND(optionSecuritySetKeyRequestPolicy,
+                 "",
+                  "TC link key request policy" SL_CLI_UNIT_SEPARATOR "App link key request policy" SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT8, SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_changekey_link = \
   SL_CLI_COMMAND(changeKeyCommand,
@@ -1236,6 +1256,9 @@ static const sl_cli_command_info_t cli_cmd_grp_aps = \
   SL_CLI_COMMAND_GROUP(aps_group_table, "Security aps related commands.");
 
 static const sl_cli_command_entry_t security_group_table[] = {
+  { "set-allow-trust-center-rejoin-using-well-known-key", &cli_cmd_security_set_hyphen_allow_hyphen_trust_hyphen_center_hyphen_rejoin_hyphen_using_hyphen_well_hyphen_known_hyphen_key, false },
+  { "set-allow-trust-center-rejoin-using-well-known-key-timeout", &cli_cmd_security_set_hyphen_allow_hyphen_trust_hyphen_center_hyphen_rejoin_hyphen_using_hyphen_well_hyphen_known_hyphen_key_hyphen_timeout, false },
+  { "set-key-request-policy", &cli_cmd_security_set_hyphen_key_hyphen_request_hyphen_policy, false },
   { "mfg-token", &cli_cmd_grp_mfg_hyphen_token, false },
   { "aps", &cli_cmd_grp_aps, false },
   { NULL, NULL, false },
@@ -1274,15 +1297,6 @@ static const sl_cli_command_entry_t zigbee_print_group_table[] = {
 };
 static const sl_cli_command_info_t cli_cmd_grp_zigbee_print = \
   SL_CLI_COMMAND_GROUP(zigbee_print_group_table, "");
-
-static const sl_cli_command_entry_t end_hyphen_device_hyphen_support_group_table[] = {
-  { "status", &cli_cmd_end_hyphen_device_hyphen_support_status, false },
-  { "poll-completed-callback", &cli_cmd_end_hyphen_device_hyphen_support_poll_hyphen_completed_hyphen_callback, false },
-  { "force-short-poll", &cli_cmd_end_hyphen_device_hyphen_support_force_hyphen_short_hyphen_poll, false },
-  { NULL, NULL, false },
-};
-static const sl_cli_command_info_t cli_cmd_grp_end_hyphen_device_hyphen_support = \
-  SL_CLI_COMMAND_GROUP(end_hyphen_device_hyphen_support_group_table, "end-device-support related commands.");
 
 static const sl_cli_command_entry_t find_hyphen_and_hyphen_bind_group_table[] = {
   { "initiator", &cli_cmd_find_hyphen_and_hyphen_bind_initiator, false },
@@ -1400,7 +1414,6 @@ static const sl_cli_command_info_t cli_cmd_grp_zll_hyphen_commissioning = \
 static const sl_cli_command_entry_t plugin_group_table[] = {
   { "bdb-rejoin", &cli_cmd_grp_bdb_hyphen_rejoin, false },
   { "counters", &cli_cmd_grp_counters, false },
-  { "end-device-support", &cli_cmd_grp_end_hyphen_device_hyphen_support, false },
   { "find-and-bind", &cli_cmd_grp_find_hyphen_and_hyphen_bind, false },
   { "identify", &cli_cmd_grp_identify, false },
   { "interpan", &cli_cmd_grp_interpan, false },
@@ -1425,10 +1438,13 @@ static const sl_cli_command_info_t cli_cmd_grp_find = \
 static const sl_cli_command_entry_t network_group_table[] = {
   { "form", &cli_cmd_network_form, false },
   { "join", &cli_cmd_network_join, false },
+  { "pjoin", &cli_cmd_network_pjoin, false },
   { "leave", &cli_cmd_network_leave, false },
   { "rejoin", &cli_cmd_network_rejoin, false },
   { "rejoin-diff-device-type", &cli_cmd_network_rejoin_hyphen_diff_hyphen_device_hyphen_type, false },
   { "extpanid", &cli_cmd_network_extpanid, false },
+  { "isopen", &cli_cmd_network_isopen, false },
+  { "broad-pjoin", &cli_cmd_network_broad_hyphen_pjoin, false },
   { "change-channel", &cli_cmd_network_change_hyphen_channel, false },
   { "set", &cli_cmd_network_set, false },
   { "init", &cli_cmd_network_init, false },

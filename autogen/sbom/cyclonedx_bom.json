@@ -3,7 +3,7 @@
   "specVersion" : "1.6",
   "version" : 1,
   "metadata" : {
-    "timestamp" : "2026-03-03T02:27:25Z",
+    "timestamp" : "2026-03-03T03:55:53Z",
     "authors" : [ {
       "name" : "Silicon Laboratories, Inc."
     } ],
@@ -240,18 +240,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_end_device_support",
-      "name" : "End Device Support",
-      "version" : "2025.12.0",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_find_and_bind_initiator",
       "name" : "Find and Bind Initiator",
       "version" : "2025.12.0",
@@ -302,18 +290,6 @@
       "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_network_steering",
       "name" : "Network Steering",
-      "version" : "2025.12.0",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_pro_leaf_stack",
-      "name" : "Pro Leaf Stack",
       "version" : "2025.12.0",
       "supplier" : {
         "name" : "Silicon Laboratories, Inc."
@@ -2360,18 +2336,6 @@
     }, {
       "scope" : "required",
       "type" : "library",
-      "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_pro_leaf_stack_library",
-      "name" : "Zigbee PRO Leaf (Library)",
-      "version" : "2025.12.0",
-      "supplier" : {
-        "name" : "Silicon Laboratories, Inc."
-      },
-      "licenses" : [ {
-        "expression" : "MSLA"
-      } ]
-    }, {
-      "scope" : "required",
-      "type" : "library",
       "bom-ref" : "silabs.simplicity_sdk:2025.12.0:radio_priority_configurator",
       "name" : "Radio Priority Configurator",
       "version" : "2025.12.0",
@@ -2452,6 +2416,42 @@
       },
       "licenses" : [ {
         "expression" : "Zlib"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_pro_stack",
+      "name" : "Pro Stack (Common)",
+      "version" : "2025.12.0",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "MSLA"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_pro_stack_library",
+      "name" : "Zigbee PRO Stack (Library)",
+      "version" : "2025.12.0",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "MSLA"
+      } ]
+    }, {
+      "scope" : "required",
+      "type" : "library",
+      "bom-ref" : "silabs.simplicity_sdk:2025.12.0:zigbee_pro_stack_basic",
+      "name" : "Pro Stack (Basic)",
+      "version" : "2025.12.0",
+      "supplier" : {
+        "name" : "Silicon Laboratories, Inc."
+      },
+      "licenses" : [ {
+        "expression" : "MSLA"
       } ]
     } ]
   } ]

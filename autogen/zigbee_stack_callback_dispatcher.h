@@ -153,10 +153,6 @@ void sl_zigbee_af_bdb_3dot1_rejoin_algorithm_stack_status_cb(
       // Stack status
       sl_status_t status)
 ;
-void sl_zigbee_af_end_device_support_stack_status_cb(
-      // Stack status
-      sl_status_t status)
-;
 void sli_zigbee_af_network_steering_stack_status_callback(
       // Stack status
       sl_status_t status)
@@ -293,14 +289,6 @@ void sli_zigbee_af_remote_delete_binding(
 
 // Poll Complete
 void sli_zigbee_af_poll_complete(
-      // An sl_status_t value: SL_STATUS_OK - Data was received in response to
-      // the poll. SL_STATUS_MAC_NO_DATA - No data was pending.
-      // SL_STATUS_ZIGBEE_DELIVERY_FAILED - The poll message could not be sent.
-      // SL_STATUS_MAC_NO_ACK_RECEIVED - The poll message was sent but not
-      // acknowledged by the parent.
-      sl_status_t status)
-;
-void sli_zigbee_af_end_device_support_poll_complete_callback(
       // An sl_status_t value: SL_STATUS_OK - Data was received in response to
       // the poll. SL_STATUS_MAC_NO_DATA - No data was pending.
       // SL_STATUS_ZIGBEE_DELIVERY_FAILED - The poll message could not be sent.

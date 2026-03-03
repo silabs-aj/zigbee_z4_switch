@@ -26,8 +26,6 @@ void sli_zigbee_af_event_init(void);
 void sli_zigbee_af_zcl_framework_core_init_events_callback(uint8_t init_level);
 void sli_zigbee_af_service_discovery_init_events_callback(uint8_t init_level);
 void sli_zigbee_af_bdb_3dot1_rejoin_algorithm_init_callback(uint8_t init_level);
-void sli_zigbee_af_end_device_support_move_init(uint8_t init_level);
-void sli_zigbee_af_end_device_support_polling_init(uint8_t init_level);
 void sli_zigbee_af_find_and_bind_initiator_init_callback(uint8_t init_level);
 void sl_zigbee_af_interpan_init_cb(uint8_t init_level);
 void sli_zigbee_af_network_steering_init_callback(uint8_t init_level);
@@ -38,7 +36,6 @@ void sli_zigbee_af_zll_commissioning_client_init_callback(uint8_t init_level);
 // Local data Init
 void sli_zigbee_af_local_data_init(void);
 void sl_zigbee_af_counters_init_cb(uint8_t init_level);
-void sl_zigbee_af_end_device_support_init_cb(uint8_t init_level);
 void sl_zigbee_af_interpan_init_cb(uint8_t init_level);
 void sl_zigbee_af_trust_center_keepalive_init_cb(uint8_t init_level);
 // Init done
@@ -51,6 +48,5 @@ void sli_zigbee_af_network_init(uint8_t init_level);
 
 // Tick
 void sli_zigbee_af_tick(void);
-void sl_zigbee_af_end_device_support_tick_cb(void);
 
 #endif // SL_ZIGBEE_COMMON_CALLBACK_DISPATCHER_H

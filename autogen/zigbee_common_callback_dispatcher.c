@@ -25,8 +25,6 @@ void sli_zigbee_af_event_init(void)
   sli_zigbee_af_zcl_framework_core_init_events_callback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   sli_zigbee_af_service_discovery_init_events_callback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   sli_zigbee_af_bdb_3dot1_rejoin_algorithm_init_callback(SL_ZIGBEE_INIT_LEVEL_EVENT);
-  sli_zigbee_af_end_device_support_move_init(SL_ZIGBEE_INIT_LEVEL_EVENT);
-  sli_zigbee_af_end_device_support_polling_init(SL_ZIGBEE_INIT_LEVEL_EVENT);
   sli_zigbee_af_find_and_bind_initiator_init_callback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   sl_zigbee_af_interpan_init_cb(SL_ZIGBEE_INIT_LEVEL_EVENT);
   sli_zigbee_af_network_steering_init_callback(SL_ZIGBEE_INIT_LEVEL_EVENT);
@@ -39,7 +37,6 @@ void sli_zigbee_af_event_init(void)
 void sli_zigbee_af_local_data_init(void)
 {
   sl_zigbee_af_counters_init_cb(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
-  sl_zigbee_af_end_device_support_init_cb(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
   sl_zigbee_af_interpan_init_cb(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
   sl_zigbee_af_trust_center_keepalive_init_cb(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
 }
@@ -56,5 +53,4 @@ void sli_zigbee_af_init_done(void)
 
 void sli_zigbee_af_tick(void)
 {
-  sl_zigbee_af_end_device_support_tick_cb();
 }
