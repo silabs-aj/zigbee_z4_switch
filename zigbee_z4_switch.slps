@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
+  <descriptors name="zigbee_z4_switch">
+    <properties key="projectCommon.sdkId" value="com.silabs.sdk.stack.sisdk:2025.12.0._-864714320-563987568"/>
+    <properties key="universalConfig.relativeWorkspacePath" value="..\zigbee_z4_switch.slcw"/>
+    <properties key="universalConfig.generationDirectory" value=""/>
+    <properties key="universalConfig.toolchainCompatibility" value="iar llvm gcc"/>
+    <properties key="projectCommon.overwriteCopiedSources" value="false"/>
+    <properties key="projectCommon.boardIds" value="brd4118a:0.0.0.A03 brd4002a:0.0.0.A06"/>
+    <properties key="projectCommon.kitId" value=""/>
+    <properties key="projectCommon.partId" value="mcu.arm.efr32.mg26.efr32mg26b510f3200il136"/>
+    <properties key="projectCommon.toolchainId" value="com.silabs.ss.framework.project.core.noToolChain:0.0.0"/>
+    <properties key="universalConfig.projectTypeIds" value="visual-studio-code"/>
+    <properties key="projectCommon.importModeId" value="COPY"/>
+    <properties key="universalConfig.compSelProjInstanceId" value="1772504847084"/>
+  </descriptors>
+</model:MDescriptors>
