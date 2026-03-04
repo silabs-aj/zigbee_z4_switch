@@ -4,7 +4,7 @@
 227	1970	7942142003736615	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/bootloader_interface/platform/bootloader/api/btl_interface.c.obj	167f9160d7e156e4
 7900	10437	7942142080396751	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/platform_core/platform/service/sleeptimer/src/sl_sleeptimer_hal_timer.c.obj	b50b4fc4b6f94496
 43631	48264	7942142437783280	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/zigbee/stack/security/zigbee-security-manager.c.obj	1d322e79df5baa4f
-44522	47755	7942142446653379	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/app.c.obj	35b796563dd69fb
+47	579	7942986629356375	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/app.c.obj	35b796563dd69fb
 497	1505	7942142006328318	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/platform_common/platform/common/src/sl_assert.c.obj	359fe4868c3dd598
 30541	35351	7942142306885460	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/zigbee/app/framework/util/global-callback.c.obj	86fbd19620cd39e
 130	1569	7942142002610871	CMakeFiles/slc.dir/base/2497e5177ba6989ed377dc5c4e46815b/board_drivers/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c.obj	ebb144df63f21ce8
@@ -393,10 +393,10 @@
 43842	47157	7942142439893820	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/zigbee/stack/zigbee/sli_zigbee_zdo_cluster_filter.c.obj	f6a0043460c68e84
 43971	48052	7942142441164969	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/simplicity_sdk_2025.12.0/zigbee/stack/zigbee/source-route-stub.c.obj	5a8c514b0bb0c7bb
 45202	48186	7942142453393596	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sl_event_handler.c.obj	6cf14efb630f755d
-116	659	7942144120849151	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sl_cli_command_table.c.obj	608006d3e7dc4bcc
+64	391	7942986629525034	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sl_cli_command_table.c.obj	608006d3e7dc4bcc
 45313	47437	7942142454558929	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sl_iostream_handles.c.obj	7cdf295148fea72
 45753	47623	7942142459009253	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sl_rail_util_ieee802154_phy_select.c.obj	6abfdab1ed98513e
 46028	47545	7942142461747166	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sl_simple_button_instances.c.obj	49a8b1ca605bb1eb
 46345	48015	7942142464902099	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/sli_cli_hooks.c.obj	e17c88c0e9b777f8
 46941	49100	7942142470836875	CMakeFiles/slc.dir/base/C_/workspace/v6_/zigbee_z4_switch/autogen/zap-event.c.obj	291d579c7790279d
-661	29948	7942144126289834	base/zigbee_z4_switch.out	f730cb9e30f0ffc7
+580	14899	7942986634701105	base/zigbee_z4_switch.out	f730cb9e30f0ffc7

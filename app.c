@@ -23,6 +23,8 @@
 #include "zll-commissioning.h"
 #include "find-and-bind-initiator.h"
 #include "sl_cli.h"
+#include "sl_token_manager_api.h"
+#include "sl_token_manager_defines.h"
 #if defined(SL_CATALOG_POWER_MANAGER_PRESENT)
 #include "zigbee_sleep_config.h"
 #endif
@@ -50,6 +52,20 @@
 #define BUTTON0                      0
 #define BUTTON1                      1
 #define SWITCH_ENDPOINT              1
+#define DEFAULT_SWITCH_NODE_ID       0U
+#define DEFAULT_SWITCH_ENDPOINT      1U
+#define DEFAULT_SWITCH_INTERVAL_MS   1000U
+
+#define SWITCH_PERIODIC_TOKEN_KEY     SL_TOKEN_GET_DYNAMIC_TOKEN((SL_TOKEN_NVM3_REGION_USER | 0x0001), 0)
+#define SWITCH_PERIODIC_TOKEN_VERSION 1U
+
+typedef struct {
+  uint16_t node_id;
+  uint8_t endpoint;
+  uint32_t interval_ms;
+  uint8_t version;
+} switch_periodic_token_t;
+
 
 static bool commissioning = false;
 static uint8_t lastButton;
@@ -58,11 +74,41 @@ static sl_zigbee_af_event_t commissioning_event;
 static sl_zigbee_af_event_t led_event;
 static sl_zigbee_af_event_t finding_and_binding_event;
 
-
-static sl_802154_short_addr_t periodic_target_node_id;
-static uint8_t periodic_target_endpoint;
-static uint32_t periodic_interval_ms;
+static uint16_t periodic_target_node_id = DEFAULT_SWITCH_NODE_ID;
+static uint8_t periodic_target_endpoint = DEFAULT_SWITCH_ENDPOINT;
+static uint32_t periodic_interval_ms = DEFAULT_SWITCH_INTERVAL_MS;
 static sl_zigbee_af_event_t switch_periodic_event;
+
+static void load_switch_periodic_config(void)
+{
+  switch_periodic_token_t token_data;
+  sl_status_t status = sl_token_manager_get_data(SWITCH_PERIODIC_TOKEN_KEY,
+                                                  &token_data,
+                                                  sizeof(token_data));
+
+  if (status == SL_STATUS_OK && token_data.version == SWITCH_PERIODIC_TOKEN_VERSION) {
+    periodic_target_node_id = token_data.node_id;
+    periodic_target_endpoint = token_data.endpoint;
+    periodic_interval_ms = token_data.interval_ms;
+  }
+}
+
+static void save_switch_periodic_config(void)
+{
+  switch_periodic_token_t token_data = {
+    .node_id = periodic_target_node_id,
+    .endpoint = periodic_target_endpoint,
+    .interval_ms = periodic_interval_ms,
+    .version = SWITCH_PERIODIC_TOKEN_VERSION,
+  };
+
+  sl_status_t status = sl_token_manager_set_data(SWITCH_PERIODIC_TOKEN_KEY,
+                                                  &token_data,
+                                                  sizeof(token_data));
+  if (status != SL_STATUS_OK) {
+    sl_zigbee_app_debug_println("switch_periodic config save failed: 0x%02X", status);
+  }
+}
 
 static void switch_periodic_event_handler(sl_zigbee_af_event_t *event)
 {
@@ -92,6 +138,7 @@ void switch_periodic_command(sl_cli_command_arg_t *arguments)
   periodic_target_node_id = sl_cli_get_argument_uint16(arguments, 0);
   periodic_target_endpoint = sl_cli_get_argument_uint8(arguments, 1);
   periodic_interval_ms = sl_cli_get_argument_uint32(arguments, 2);
+  save_switch_periodic_config();
 
   if (periodic_interval_ms == 0U) {
     sl_zigbee_af_event_set_inactive(&switch_periodic_event);
@@ -106,10 +153,6 @@ void switch_periodic_command(sl_cli_command_arg_t *arguments)
                               (unsigned long)periodic_interval_ms);
 }
 
-//---------------
-// Event handlers
-
-//---------------
 // Event handlers
 
 static void commissioning_event_handler(sl_zigbee_af_event_t *event)
@@ -175,6 +218,7 @@ void sl_zigbee_af_main_init_cb(void)
   sl_zigbee_af_event_init(&led_event, led_event_handler);
   sl_zigbee_af_event_init(&finding_and_binding_event, finding_and_binding_event_handler);
   sl_zigbee_af_event_init(&switch_periodic_event, switch_periodic_event_handler);
+  load_switch_periodic_config();
 }
 
 /** @brief Stack Status
@@ -191,7 +235,16 @@ void sl_zigbee_af_stack_status_cb(sl_status_t status)
     sl_zigbee_af_event_set_inactive(&switch_periodic_event);
   } else if (status == SL_STATUS_NETWORK_UP) {
     led_turn_on(COMMISSIONING_STATUS_LED);
-  }
+    if (periodic_interval_ms > 0U) {
+         sl_zigbee_af_event_set_active(&switch_periodic_event);
+         sl_zigbee_app_debug_println("switch_periodic auto-started: node 0x%04X ep %d interval %lu ms",
+                                     periodic_target_node_id,
+                                     periodic_target_endpoint,
+                                     (unsigned long)periodic_interval_ms);
+       } else {
+         sl_zigbee_app_debug_println("switch_periodic auto-start disabled (interval 0)");
+       }
+     }
 }
 
 /** @brief Complete network steering.
